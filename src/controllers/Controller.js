@@ -4,7 +4,7 @@ class Controller {
 		this.entidadeService= entidadeService;
 	}
 
-	async getAll(req, res){
+	async pegaTodos(req, res){
 		try {
 			const listaRegistros = await this.entidadeService.getAllRegisters();
 			return res.status(200).json(listaRegistros);
@@ -13,27 +13,27 @@ class Controller {
 		}
 	}
 
-	// async pegaUmPorId(req, res) {
-	//   const { id } = req.params;
-	//   try {
-	//     const umRegistro = await this.entidadeService.pegaUmRegistroPorId(Number(id));
-	//     return res.status(200).json(umRegistro);
-	//   } catch (erro) {
-	//     // erro
-	//   }
-	// }
+	async pegaUmPorId(req, res) {
+		const { id } = req.params;
+		try {
+			const umRegistro = await this.entidadeService.pegaUmRegistroPorId(Number(id));
+			return res.status(200).json(umRegistro);
+		} catch (erro) {
+		// erro
+		}
+	}
 
-	// async criaNovo(req, res) {
-	//   const dadosParaCriacao = req.body;
-	//   try {
-	//     const novoRegistroCriado = await this.entidadeService.criaRegistro(dadosParaCriacao);
-	//     return res.status(200).json(novoRegistroCriado);
-	//   } catch (erro) {
-	//     // erro
-	//   }
-	// }
+	async criaNovo(req, res) {
+		const dadosParaCriacao = req.body;
+		try {
+			const novoRegistroCriado = await this.entidadeService.criaRegistro(dadosParaCriacao);
+			return res.status(200).json(novoRegistroCriado);
+		} catch (erro) {
+			// erro
+		}
+	}
 
-	async update(req,res){
+	async atualiza(req,res){
 		const { id } = req.params;
 		const dadosAtualizados = req.body;
 		try {
@@ -50,17 +50,15 @@ class Controller {
 		}
 	}
 
-	// async exclui(req, res) {
-	//   const { id } = req.params;
-	//   try {
-	//     await this.entidadeService.excluiRegistro(Number(id));
-	//     return res.status(200).json({ mensagem: `id ${id} deletado` });
-
-
-	//   } catch (error) {
-	//     return res.status(500).json(error.message);
-	//   }
-	// }
+	async exclui(req, res) {
+		const { id } = req.params;
+		try {
+			await this.entidadeService.excluiRegistro(Number(id));
+			return res.status(200).json({ mensagem: `id ${id} deletado` });
+		} catch (error) {
+			return res.status(500).json(error.message);
+		}
+	}
 }
 
 module.exports = Controller;

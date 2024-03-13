@@ -10,13 +10,13 @@ class Services {
 		return database[this.model].findAll();
 	}
 
-	// async pegaUmRegistroPorId(id) {
-	//   return dataSource[this.model].findByPk(id);
-	// }
+	async pegaUmRegistroPorId(id) {
+		return database[this.model].findByPk(id);
+	}
 
-	// async criaRegistro(dadosDoRegistro) {
-	//   return dataSource[this.model].create(dadosDoRegistro);
-	// }
+	async criaRegistro(dadosDoRegistro) {
+		return database[this.model].create(dadosDoRegistro);
+	}
 
 	async updateRegister(dadosAtualizados, id){
 		const listaRegistrosAtualizados = await database[this.model].update(dadosAtualizados, { where: { id :id } });
@@ -28,9 +28,9 @@ class Services {
 		}
 	}
   
-	// async excluiRegistro(id) {
-	//   return dataSource[this.model].destroy({ where: { id: id } });
-	// }
+	async excluiRegistro(id) {
+		return database[this.model].destroy({ where: { id: id } });
+	}
 
 }
 
