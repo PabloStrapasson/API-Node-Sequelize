@@ -2,25 +2,27 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
 	async up(queryInterface, Sequelize) {
-		await queryInterface.createTable('matriculas', {
+		await queryInterface.createTable('pessoas', {
 			id: {
 				allowNull: false,
 				autoIncrement: true,
 				primaryKey: true,
 				type: Sequelize.INTEGER
 			},
-			status: {
+			nome: {
 				type: Sequelize.STRING
 			},
-			estudante_id: {
-				allowNull: false,
-				type: Sequelize.INTEGER,
-				references: { model: 'pessoas', key: 'id' }
+			email: {
+				type: Sequelize.STRING
 			},
-			curso_id: {
-				allowNull: false,
-				type: Sequelize.INTEGER,
-				references: { model: 'cursos', key: 'id' }
+			cpf: {
+				type: Sequelize.STRING
+			},
+			ativo: {
+				type: Sequelize.BOOLEAN
+			},
+			role: {
+				type: Sequelize.STRING
 			},
 			createdAt: {
 				allowNull: false,
@@ -32,7 +34,8 @@ module.exports = {
 			}
 		});
 	},
+	// eslint-disable-next-line no-unused-vars
 	async down(queryInterface, Sequelize) {
-		await queryInterface.dropTable('matriculas');
+		await queryInterface.dropTable('pessoas');
 	}
 };
