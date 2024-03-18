@@ -6,8 +6,8 @@ class Services {
 		this.model = nomeModel;
 	}
 
-	async getAllRegisters(){
-		return database[this.model].findAll();
+	async getAllRegisters(where = {}){
+		return database[this.model].findAll({ where: {...where} });
 	}
 
 	async pegaRegistrosPorEscopo(escopo) {
