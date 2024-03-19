@@ -30,8 +30,12 @@ class Services {
 		return database[this.model].create(dadosDoRegistro);
 	}
 
-	async updateRegister(dadosAtualizados, whereObj){
-		const listaRegistrosAtualizados = await database[this.model].update(dadosAtualizados, { where: { ...whereObj } });
+	async updateRegister(dadosAtualizados, whereObj, transacao = {}){
+		const listaRegistrosAtualizados = await database[this.model]
+			.update(dadosAtualizados, { 
+				where: { ...whereObj },
+				transaction: transacao 
+			});
 
 		if(listaRegistrosAtualizados[0] === 0){
 			return false;
